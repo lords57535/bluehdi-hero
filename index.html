@@ -1,133 +1,252 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <title>Association Victimes Chaîne 1.5 BlueHDi</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Association Victimes Chaîne 1.5 BlueHDi</title>
+  <meta name="description" content="Association des victimes du défaut de chaîne de distribution du moteur 1.5 BlueHDi. Action collective, témoignages, soutien." />
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            color: #222;
-        }
+  <style>
+    :root{
+      --bg:#0b0f1a;
+      --panel:#0f1629;
+      --card:#111a30;
+      --card2:#0e1528;
+      --text:#e8ecff;
+      --muted:#b7c0ff;
+      --muted2:#9aa6e6;
+      --line:rgba(255,255,255,.10);
+      --accent:#ff3b30;
+      --accent2:#ff7a4a;
+      --ok:#31d0aa;
 
-        .container {
-            max-width: 1000px;
-            margin: auto;
-            padding: 40px 20px;
-        }
+      --radius:18px;
+      --shadow: 0 18px 60px rgba(0,0,0,.35);
+      --shadow2: 0 10px 30px rgba(0,0,0,.25);
+    }
 
-        h1 {
-            color: #c00;
-            font-size: 36px;
-        }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(255,59,48,.18), transparent 55%),
+        radial-gradient(900px 600px at 85% 18%, rgba(255,122,74,.14), transparent 60%),
+        radial-gradient(900px 700px at 55% 90%, rgba(49,208,170,.10), transparent 60%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{color:inherit}
+    .wrap{max-width:1100px; margin:0 auto; padding:28px 18px 70px}
+    .nav{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between;
+      padding:14px 16px; border:1px solid var(--line); border-radius:999px; background:rgba(17,26,48,.55);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow2);
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 14px; border-radius:999px; border:1px solid var(--line);
+      background:rgba(15,22,41,.55);
+      color:var(--muted);
+      text-decoration:none;
+      transition:.18s ease;
+      font-weight:650;
+      font-size:14px;
+    }
+    .pill:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.18)}
+    .pill.primary{
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      border:none; color:white;
+      box-shadow: 0 14px 40px rgba(255,59,48,.22);
+    }
 
-        h2 {
-            margin-top: 40px;
-            color: #333;
-        }
+    .hero{margin-top:22px; display:grid; grid-template-columns: 1.2fr .8fr; gap:18px; align-items:stretch}
+    @media (max-width: 900px){ .hero{grid-template-columns:1fr} }
 
-        .cta {
-            margin: 30px 0;
-            padding: 20px;
-            background: #c00;
-            color: #fff;
-            text-align: center;
-            font-size: 20px;
-            border-radius: 8px;
-        }
+    .panel{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(17,26,48,.78), rgba(11,15,26,.35));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .panel .inner{padding:26px 22px}
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:7px 12px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      font-size:13px;
+      font-weight:700;
+    }
+    h1{margin:14px 0 10px; font-size:42px; line-height:1.1}
+    @media (max-width: 520px){ h1{font-size:34px} }
+    .lead{color:var(--muted); font-size:16px; margin:0 0 18px}
+    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:14px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px; border-radius:14px; border:1px solid var(--line);
+      background: rgba(15,22,41,.55);
+      text-decoration:none; font-weight:800;
+      transition: .18s ease;
+      min-height:44px;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.18)}
+    .btn.primary{
+      border:none;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color:white;
+      box-shadow: 0 14px 40px rgba(255,59,48,.22);
+    }
+    .btn.ghost{color:var(--text)}
+    .stats{display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-top:18px}
+    @media (max-width: 520px){ .stats{grid-template-columns:1fr} }
+    .stat{
+      padding:14px 14px;
+      border-radius: 16px;
+      border:1px solid var(--line);
+      background: rgba(17,26,48,.45);
+    }
+    .stat .n{font-weight:900; font-size:18px}
+    .stat .t{color:var(--muted2); font-size:13px; margin-top:4px}
 
-        .cta a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
+    .side{
+      display:flex; flex-direction:column; gap:14px;
+    }
+    .card{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(17,26,48,.55);
+      box-shadow: var(--shadow2);
+      padding:18px 18px;
+    }
+    .card h3{margin:0 0 8px; font-size:16px}
+    .muted{color:var(--muted)}
+    .small{font-size:13px; color:var(--muted2)}
+    .list{margin:10px 0 0; padding:0; list-style:none; display:grid; gap:10px}
+    .li{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:10px 10px; border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(14,21,40,.45);
+    }
 
-        .block {
-            background: #fff;
-            padding: 25px;
-            margin: 20px 0;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-    </style>
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:14px;
+    }
+    .col-6{grid-column: span 6}
+    .col-7{grid-column: span 7}
+    .col-5{grid-column: span 5}
+    .col-12{grid-column: span 12}
+    @media (max-width: 900px){
+      .col-6,.col-7,.col-5{grid-column: span 12}
+    }
+
+    .sectionTitle{
+      display:flex; align-items:center; gap:10px;
+      font-size:18px; margin:0 0 8px;
+    }
+    .sectionText{margin:0; color:var(--muted)}
+    .chipRow{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .chip{
+      padding:8px 10px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color:var(--muted);
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .schema{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(17,26,48,.50), rgba(11,15,26,.30));
+      padding:16px;
+      overflow:auto;
+    }
+    .footerCta{
+      margin-top:18px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(255,59,48,.14), rgba(255,122,74,.10));
+      padding:18px;
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      flex-wrap:wrap;
+    }
+    .footerCta strong{font-size:16px}
+    .note{
+      margin-top:14px;
+      color:rgba(255,255,255,.70);
+      font-size:12px;
+    }
+
+    /* SVG icons */
+    .ico{width:18px; height:18px; display:inline-block; vertical-align:middle}
+    .ico.lg{width:22px; height:22px}
+    .ico.red{color:var(--accent)}
+    .ico.mint{color:var(--ok)}
+    .ico.muted{color:var(--muted)}
+    svg{fill: currentColor}
+  </style>
 </head>
 
 <body>
+  <div class="wrap">
 
-    <div class="container">
+    <!-- NAV -->
+    <div class="nav">
+      <div class="brand">
+        <span class="kicker">
+          <span class="ico red" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 2.5 1.4 5.2 4.2 8.1 1.1 1.1 2.3 2.1 3.6 3.2.1.1.2.1.2.2.1-.1.2-.1.2-.2 1.3-1.1 2.5-2.1 3.6-3.2C17.6 14.2 19 11.5 19 9a7 7 0 0 0-7-7Zm0 9.2a2.2 2.2 0 1 1 0-4.4 2.2 2.2 0 0 1 0 4.4Z"/></svg>
+          </span>
+          Association nationale
+        </span>
+        <span>Victimes Chaîne <span style="opacity:.9">1.5 BlueHDi</span></span>
+      </div>
 
-        <h1>Association Victimes Chaîne 1.5 BlueHDi</h1>
-        <p><strong>Défendre les automobilistes touchés par un défaut de la chaîne de distribution</strong></p>
-
-        <p>
-            Des milliers de conducteurs de véhicules équipés du moteur 1.5 BlueHDi rencontrent des défaillances graves liées à la chaîne de distribution.
-            Notre association regroupe les victimes afin de faire reconnaître le problème et d’obtenir des solutions équitables.
-        </p>
-
-        <div class="cta">
-            👉 <a href="#">Rejoindre l’action collective</a>
-        </div>
-
-        <div class="block">
-            <h2>🚨 Le problème</h2>
-            <p>
-                Le moteur 1.5 BlueHDi équipe de nombreux véhicules Peugeot, Citroën, DS, Opel, Fiat et Toyota.
-                De nombreux conducteurs signalent une usure anormale de la chaîne de distribution, pouvant entraîner des pannes graves,
-                une immobilisation du véhicule et des réparations très coûteuses.
-            </p>
-        </div>
-
-        <div class="block">
-            <h2>🤝 Pourquoi une action collective</h2>
-            <p>
-                Pris individuellement, les automobilistes sont souvent confrontés à des réponses inégales et à des prises en charge insuffisantes.
-                En se regroupant, les victimes peuvent démontrer l’ampleur du problème et peser collectivement pour obtenir une solution équitable.
-            </p>
-        </div>
-
-        <div class="block">
-            <h2>🗺️ Une mobilisation nationale</h2>
-            <p>
-                Notre cartographie recense les cas signalés sur l’ensemble du territoire.
-                Elle montre que le problème n’est pas isolé mais concerne de nombreux conducteurs.
-                Chaque témoignage renforce l’action collective.
-            </p>
-        </div>
-
-        <div class="block">
-            <h2>📰 Une visibilité médiatique</h2>
-            <p>
-                La situation des conducteurs touchés par le moteur 1.5 BlueHDi fait l’objet d’un intérêt croissant de la part des médias.
-                Cette visibilité contribue à faire avancer la reconnaissance du problème.
-            </p>
-        </div>
-
-        <div class="block">
-            <h2>🎯 Nos objectifs</h2>
-            <ul>
-                <li>Faire reconnaître le dysfonctionnement</li>
-                <li>Obtenir une prise en charge équitable</li>
-                <li>Défendre les victimes</li>
-                <li>Favoriser la transparence</li>
-            </ul>
-        </div>
-
-        <div class="block">
-            <h2>💪 Vous êtes concerné ?</h2>
-            <p>
-                Si votre véhicule est équipé d’un moteur 1.5 BlueHDi et que vous avez rencontré une panne ou un dysfonctionnement, vous n’êtes pas seul.
-            </p>
-            <p>
-                👉 Rejoindre l’action collective<br>
-                👉 Ajouter mon témoignage<br>
-                👉 Nous soutenir
-            </p>
-        </div>
-
+      <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;">
+        <a class="pill" href="#probleme">Le problème</a>
+        <a class="pill" href="#action">Action collective</a>
+        <a class="pill" href="#objectifs">Objectifs</a>
+        <a class="pill primary" href="#rejoindre">Rejoindre</a>
+      </div>
     </div>
 
-</body>
-</html>
+    <!-- HERO -->
+    <div class="hero">
+      <div class="panel">
+        <div class="inner">
+          <div class="kicker">
+            <span class="ico red" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2 1 21h22L12 2Zm0 6 4 8H8l4-8Zm-1 9h2v2h-2v-2Z"/></svg>
+            </span>
+            Défaut de chaîne de distribution — 1.5 BlueHDi
+          </div>
+
+          <h1>Défendre les automobilistes touchés</h1>
+          <p class="lead">
+            Des conducteurs équipés du moteur <strong>1.5 BlueHDi</strong> signalent des défaillances graves liées à la
+            <strong>chaîne de distribution</strong> : pannes, immobilisations, réparations coûteuses.
+            L’association regroupe les victimes pour faire reconnaître le problème et obtenir des solutions équitables.
+          </p>
+
+          <div class="ctaRow" id="rejoindre">
+            <!-- Remplace les # par tes liens AssoConnect : formulaire / adhésion / don -->
+            <a class="btn primary" href="#">
+              <span class="ico lg" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0-5-5 5 5 0 0 0 5 5Zm0 2c-4.4 0-8 2.2-8 5v1h16v-1c0-2.8-3.6-5-8-5Z"/></svg></span>
+              Rejoindre l’action collective
+            </a>
+            <a class="btn ghost" href="#">
+              <span class="ico lg muted" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4h16v14H7l-
+
